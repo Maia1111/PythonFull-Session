@@ -1,9 +1,17 @@
-1 -  Criou a pasta do projeto
-2 -  Abriu no VScode 
-3 -  Criou o ambiente Virtual
-4 -  Setou o ambiente virtual
-5 -  Instalou o django na pasta do projeto com ambiente virtual ativado
-6 -  Criou o projeto Django
-7 -  Criou app usuarios
-8 -  colocou o app usuarios no INSTALLED_APPS  do settings 
-9 -  Configurou o caminho da pasta template no settings em TEMPLATES, linguagem pt-Br, Timezone
+1  -  Criou a pasta do projeto
+2  -  Abriu no VScode 
+3  -  Criou o ambiente Virtual
+4  -  Setou o ambiente virtual
+5  -  Instalou o django na pasta do projeto com ambiente virtual ativado
+6  -  Criou o projeto Django
+7  -  Criou app usuarios
+8  -  colocou o app usuarios no INSTALLED_APPS  do settings 
+9  -  Configurou o caminho da pasta template no settings em TEMPLATES, linguagem pt-Br, Timezone
+10 -  Criação das urls do projeto
+11 -  Criação do arquivo urls dentro do app
+12 -  Criou os html base
+13 -  criou o html do cadastro usando bootstrap
+14 -  Criou o html do login utilizando classes do bootstrap
+15 -  Criou o model do usurio e fez a makemigrations e depois migrate
+16 -  Criou o SuperUsuadio utilizando - python3 manage.py createsuperuser 
+

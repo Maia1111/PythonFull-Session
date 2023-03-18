@@ -15,16 +15,17 @@
         <div class="col-md">
             <h1>Cadastre-se</h1>
             <hr>
-            <form>
+            <form method="POST" action="{% url 'valida_cadastro' %}">
+                {% csrf_token %}
 
                 <label>Nome:</label>
-                <input class="form-control" type="text" placeholder="Nome...">
+                <input name="nome" class="form-control" type="text" placeholder="Nome...">
                 <br>
                 <label> Email </label>
-                <input class="form-control" type="email" placeholder="Email..."> 
+                <input name="email" class="form-control" type="email" placeholder="Email..."> 
                 <br>
                 <label > Senha:</label>
-                <input class="form-control" type="password" placeholder="Senha...">
+                <input name="senha" class="form-control" type="password" placeholder="Senha...">
                 <br>
                 <input class="btn btn-success btn-lg" type="submit" value="Enviar">
 
