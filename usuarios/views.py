@@ -43,7 +43,7 @@ def valida_cadastro(request):
       # criptografando a senha 
       senha_criptografada = sha256(senha.encode()).hexdigest()   
       # Instanciando a usuario
-      usuario = usuario(nome=nome, email=email, senha=senha_criptografada)   
+      usuario = Usuario(nome=nome, email=email, senha=senha_criptografada)   
       # Salvando no bando de dados
       usuario.save()      
       return redirect('auth/login/?status=0')
