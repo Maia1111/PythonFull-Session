@@ -1,0 +1,9 @@
+1 -  Criou a pasta do projeto
+2 -  Abriu no VScode 
+3 -  Criou o ambiente Virtual
+4 -  Setou o ambiente virtual
+5 -  Instalou o django na pasta do projeto com ambiente virtual ativado
+6 -  Criou o projeto Django
+7 -  Criou app usuarios
+8 -  colocou o app usuarios no INSTALLED_APPS  do settings 
+9 -  Configurou o caminho da pasta template no settings em TEMPLATES, linguagem pt-Br, Timezone
