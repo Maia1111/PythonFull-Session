@@ -110,15 +110,15 @@ LANGUAGE_CODE = 'pt-BR'
 
 TIME_ZONE = 'America/Cuiaba'
 
-USE_I18N = True
-
-USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
+
+# Configuração de tempo de sessão em segundos 
+SESSION_COOKIE_AGE = 60 * 5
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field

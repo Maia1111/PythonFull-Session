@@ -9,6 +9,7 @@ def login(request):
     status = request.GET.get('status')
     return render(request, 'login.html', {'status': status})
 
+
 def valida_login(request):
     email = request.POST.get('email')
     senha = request.POST.get('senha')
@@ -20,15 +21,19 @@ def valida_login(request):
         return redirect(reverse('login') + '?status=1')
     elif len(usuario) > 0:
         request.session['logado'] = True
+        request.session['usuario_id'] = usuario[0].id       
         return redirect(reverse('home'))
 
-def sair(request):
-    request.session['logado'] = None
-    return render(request, 'login.html')
+def sair(request):   
+    #request.session.flush()
+    #eturn render(request, 'login.html')
+    return HttpResponse(request.session.get_expiry_date())
+
 
 def cadastro(request):
     status = request.GET.get('status')
     return render(request, 'cadastro.html', {'status': status})
+
 
 def valida_cadastro(request):
     nome = request.POST.get('nome')
