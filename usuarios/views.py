@@ -25,14 +25,18 @@ def valida_login(request):
         return redirect(reverse('home'))
 
 def sair(request):   
-    #request.session.flush()
-    #eturn render(request, 'login.html')
-    return HttpResponse(request.session.get_expiry_date())
+    request.session.flush()
+    return render(request, 'login.html')
+   
 
 
 def cadastro(request):
-    status = request.GET.get('status')
-    return render(request, 'cadastro.html', {'status': status})
+    try:
+        del request.session['logado']
+        return redirect('auth/login')
+    except KeyError:
+        return redirect(reverse('auth/login') + '?status=3')
+       
 
 
 def valida_cadastro(request):
