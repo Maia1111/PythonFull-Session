@@ -7,7 +7,39 @@
 {% block 'conteudo' %} 
 
 <div class="container">
+   
     <br>
+
+    {% if  status == '0' %}
+        <div class="alert alert-success" role="alert">
+            Cadastro realizado com sucesso!
+        </div> 
+    {% endif %}
+
+    {% if  status == '1' %}
+        <div class="alert alert-danger" role="alert">
+            Nome e email não pode estar vazio!
+        </div> 
+    {% endif %}
+
+    {% if  status == '2' %}
+        <div class="alert alert-danger" role="alert">
+            Sua senha deve ter no mínimo 8 caracteres!
+        </div> 
+    {% endif %}
+
+    {% if  status == '3' %}
+        <div class="alert alert-danger" role="alert">
+            Email já cadastrado!
+        </div> 
+    {% endif %}
+
+    {% if  status == '4' %}
+        <div class="alert alert-danger" role="alert">
+            Erro interno do sistema!
+        </div> 
+    {% endif %}
+
     <div class="row">
         <div class="col-md-3">
         </div>
@@ -28,6 +60,7 @@
                 <input name="senha" class="form-control" type="password" placeholder="Senha...">
                 <br>
                 <input class="btn btn-success btn-lg" type="submit" value="Enviar">
+                <a class="btn btn-info btn-lg" href="{% url 'login' %}">Login</a>
 
 
 
