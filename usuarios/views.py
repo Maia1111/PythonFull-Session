@@ -21,11 +21,16 @@ def valida_login(request):
     if len(usuario) == 0:
         return redirect(reverse('login') + '?status=1')  
     elif len(usuario) > 0:
-        pass 
+         request.session['logado'] = True
+         return redirect(reverse('home'))
     
     
     
-    
+def sair(request):    
+    request.session['logado'] = None
+    return redirect(reverse('login'))
+
+
    
         
     
