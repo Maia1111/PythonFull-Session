@@ -1,0 +1,11 @@
+
+{% extends 'base.html' %}
+
+{% block 'Head' %} {% endblock %}
+
+{% block 'titulo' %} home {% endblock %} 
+
+{% block 'conteudo' %}
+<a href="{% url 'sair' %}" class="btn btn-lg btn-danger"> Sair</a>
+
+{% endblock %}

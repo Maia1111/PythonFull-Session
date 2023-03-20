@@ -1,46 +1,30 @@
 from django.shortcuts import render
-from django.http  import HttpResponse
+from django.http import HttpResponse
 from .models import Usuario
 from django.shortcuts import redirect
 from django.urls import reverse
 from hashlib import sha256
 
-
 def login(request):
     status = request.GET.get('status')
     return render(request, 'login.html', {'status': status})
 
-
 def valida_login(request):
-    email = request.POST.get('email')   
+    email = request.POST.get('email')
     senha = request.POST.get('senha')
     senha = sha256(senha.encode()).hexdigest()
 
-    usuario = Usuario.objects.filter(email = email).filter(senha=senha)
+    usuario = Usuario.objects.filter(email=email).filter(senha=senha)
 
     if len(usuario) == 0:
-        return redirect(reverse('login') + '?status=1')  
+        return redirect(reverse('login') + '?status=1')
     elif len(usuario) > 0:
-         request.session['logado'] = True
-         return redirect(reverse('home'))
-    
-    
-    
-def sair(request):    
+        request.session['logado'] = True
+        return redirect(reverse('home'))
+
+def sair(request):
     request.session['logado'] = None
-    return redirect(reverse('login'))
-
-
-   
-        
-    
-
-    
-    
-
-
-
-
+    return render(request, 'login.html')
 
 def cadastro(request):
     status = request.GET.get('status')
@@ -57,7 +41,7 @@ def valida_cadastro(request):
     if len(senha) < 8:
         return redirect(reverse('cadastro') + '?status=2')
 
-    usuario = Usuario.objects.filter(email = email)
+    usuario = Usuario.objects.filter(email=email)
 
     if len(usuario) > 0:
         return redirect(reverse('cadastro') + '?status=3')

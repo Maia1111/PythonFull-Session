@@ -3,9 +3,8 @@ from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.urls import reverse
 
-
 def home(request):
     if request.session['logado']:
-        return HttpResponse("Voces esta na Home!")
+        return render(request, 'home.html')
     else:
-        return redirect(reverse('login') + '?status=2') 
+        return redirect(reverse('login') + '?status=2')
