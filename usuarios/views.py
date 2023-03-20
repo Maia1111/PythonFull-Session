@@ -8,7 +8,7 @@ from hashlib import sha256
 
 def login(request):
     status = request.GET.get('status')
-    return render(request, 'login.html', {'status':status})
+    return render(request, 'login.html', {'status': status})
 
 
 def valida_login(request):
@@ -19,19 +19,15 @@ def valida_login(request):
     usuario = Usuario.objects.filter(email = email).filter(senha=senha)
 
     if len(usuario) == 0:
-        return redirect(reverse('login') + '?status=0')
+        return redirect(reverse('login') + '?status=1')  
     elif len(usuario) > 0:
-         pass 
+        pass 
     
     
+    
+    
+   
         
-
-    
-
-    
-    
-    
-    
     
 
     
