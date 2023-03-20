@@ -4,7 +4,7 @@ from django.shortcuts import redirect
 from django.urls import reverse
 
 def home(request):
-    if request.session['logado']:
+    if request.session.get('logado'):
         return render(request, 'home.html')
     else:
         return redirect(reverse('login') + '?status=2')
