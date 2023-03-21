@@ -8,4 +8,15 @@
 {% block 'conteudo' %}
 <a href="{% url 'sair' %}" class="btn btn-lg btn-danger"> Sair</a>
 
+<!-- Alerts utilizando messages-->
+{% if messages %}
+{% for i in messages %}            
+    <div class="alert {{i.tags}}" role="alert">  
+        {{i.message}} 
+    </div>               
+{% endfor %}
+{% endif %}
+
+
+
 {% endblock %}

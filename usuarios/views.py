@@ -4,8 +4,11 @@ from .models import Usuario
 from django.shortcuts import redirect
 from django.urls import reverse
 from hashlib import sha256
+from django.contrib import messages
+from django.contrib.messages import constants
 
-def login(request):
+
+def login(request):   
     status = request.GET.get('status')
     return render(request, 'login.html', {'status': status})
 
@@ -21,7 +24,8 @@ def valida_login(request):
         return redirect(reverse('login') + '?status=1')
     elif len(usuario) > 0:
         request.session['logado'] = True
-        request.session['usuario_id'] = usuario[0].id       
+        request.session['usuario_id'] = usuario[0].id 
+        messages.add_message(request, constants.SUCCESS, 'Você entrou em nossa pagina, sejam bem vindos!')      
         return redirect(reverse('home'))
 
 def sair(request):   
@@ -30,13 +34,12 @@ def sair(request):
    
 
 
-def cadastro(request):
-    try:
-        del request.session['logado']
-        return redirect('auth/login')
-    except KeyError:
-        return redirect(reverse('auth/login') + '?status=3')
+def cadastro(request):       
+        status = request.GET.get('status')
+        return render(request, 'cadastro.html', {'status': status})
        
+    
+    
 
 
 def valida_cadastro(request):
@@ -53,7 +56,8 @@ def valida_cadastro(request):
     usuario = Usuario.objects.filter(email=email)
 
     if len(usuario) > 0:
-        return redirect(reverse('cadastro') + '?status=3')
+       return redirect(reverse('login') + '?status=3')
+
 
     try:
         senha_criptografada = sha256(senha.encode()).hexdigest()
