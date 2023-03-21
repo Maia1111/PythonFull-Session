@@ -21,7 +21,8 @@ def valida_login(request):
     usuario = Usuario.objects.filter(email=email).filter(senha=senha)
 
     if len(usuario) == 0:
-        return redirect(reverse('login') + '?status=1')
+        messages.add_message(request, messages.ERROR, 'Email ou senha inválidos.')
+        return redirect(reverse('login'))
     elif len(usuario) > 0:
         request.session['logado'] = True
         request.session['usuario_id'] = usuario[0].id 
@@ -30,6 +31,8 @@ def valida_login(request):
 
 def sair(request):   
     request.session.flush()
+    request.session['logado'] = False    
+    messages.add_message(request, messages.SUCCESS, 'Você saiu da aplicação.')   
     return render(request, 'login.html')
    
 
@@ -48,21 +51,27 @@ def valida_cadastro(request):
     senha = request.POST.get('senha')
 
     if len(nome.strip()) == 0 or len(email.strip()) == 0:
-        return redirect(reverse('cadastro') + '?status=1')
+        messages.add_message(request, constants.WARNING,'Os campos email e senha não podem ser vazios!')
+        return redirect(reverse('cadastro'))
+        
 
     if len(senha) < 8:
-        return redirect(reverse('cadastro') + '?status=2')
+        messages.add_message(request, constants.WARNING,'A senha deve ter no minimo 8 caracteres!')
+        return redirect(reverse('cadastro'))
 
     usuario = Usuario.objects.filter(email=email)
 
     if len(usuario) > 0:
-       return redirect(reverse('login') + '?status=3')
+       messages.add_message(request, constants.WARNING,'Já existe um usuário com este email')
+       return redirect(reverse('login'))
 
 
     try:
         senha_criptografada = sha256(senha.encode()).hexdigest()
         usuario = Usuario(nome=nome, email=email, senha=senha_criptografada)
         usuario.save()
-        return redirect(reverse('cadastro') + '?status=0')
+        messages.add_message(request, constants.SUCCESS, 'Cadastro realizado com sucesso!')
+        return redirect(reverse('cadastro'))        
     except:
-        return redirect(reverse('cadastro') + '?status=4')
+        messages.add_message(request, constants.SUCCESS, 'Erro interno do sistema')
+        return redirect(reverse('cadastro'))
