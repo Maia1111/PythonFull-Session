@@ -4,11 +4,10 @@ from django.shortcuts import redirect
 from django.urls import reverse
 from django.contrib import messages
 from django.contrib.messages import constants
+# importando os decoratrs que vamos usar na função home para entrar somente se estiver logado
+from django.contrib.auth.decorators import login_required
 
-def home(request):
-    if request.session.get('logado'):
-        return render(request, 'home.html')
-    else:
-        messages.add_message(request, constants.WARNING, 'Faça o login para entrar na aplicação')
-        return redirect(reverse('login'))
-        
+@login_required (login_url='login')
+def home(request):    
+       return render(request, 'home.html')
+   
